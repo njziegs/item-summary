@@ -9,7 +9,7 @@ var productArray = require('./cassandra_photos_all.js')
 //set these in command line before running node script: PGUSER=dbuser   PGHOST=database.server.com   PGPASSWORD=secretpassword   PGDATABASE=mydb   PGPORT=3211
 
 //////////////POSTGRES
-var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/amazon';
+//var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/amazon';
 
 var { Pool, Client } = require('pg')
 
@@ -47,7 +47,11 @@ var clearFile = function() {
 var writeToDb = function(input) {
     console.log("Currently on loop #", input)
     if (input < 100) {
-      var pool = new Pool()
+      var pool = new Pool(  user: 'postgres',
+        host: 'database.server.com',
+        database: 'postgres',
+        password: 'password',
+        port: 3211)
       pool.connect(function(err, client, done) {
         if (err) {
           console.log('err connecting', err)

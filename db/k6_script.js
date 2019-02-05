@@ -4,7 +4,7 @@ import { check, sleep } from "k6";
 export let options = {
   vus: 100,
   duration: "300s",
-  rps: 500
+  rps: 1000
 };
 
 
@@ -16,7 +16,7 @@ export default function() {
   } else {
   	productId = Math.floor(9000000 + Math.random()*1000);
   }
-  const res = http.get(`http://localhost:3004/products/${productId}`);
+  const res = http.get(`http://ec2-13-59-55-105.us-east-2.compute.amazonaws.com:9000/${productId}`);
   check(res, {
     success: res => res.status === 200,
   });

@@ -165,6 +165,7 @@ var clearFile = function() {
 
 clearFile();
 
+var photoLoop(counter) {
 
 const printer = function () {
 
@@ -182,7 +183,7 @@ const printer = function () {
     }
   };
 
-  let i = 9000000;
+  let i = 0;
 
   const MAX_LIM = 10000000;
 
@@ -197,6 +198,9 @@ const printer = function () {
   }
   return writer;
 }
+}
+
+const newprinty = photoLoop(0);
 
 const printty = printer();
 printty();
